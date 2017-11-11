@@ -15,7 +15,6 @@ import globalData
 import pygame
 import hero
 import border
-import PIL.Image
 
 class PygameGame(object):
 

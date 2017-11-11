@@ -23,7 +23,6 @@ class BorderGame(object):
 	def moveBorder(self, dx, dy):
 		self.currX += dx
 		self.currY += dy
-		print(self.currX, self.currY, "Settings", -self.width/2, -self.height/2)
 		if not self.isLegal():
 			self.currX -= dx
 			self.currY -= dy
