@@ -32,14 +32,15 @@ class PygameGame(object):
         pass
 
     def mouseMotion(self, x, y):
+        move = 10
         if x < self.width//2: 
-            self.border.moveBorder(5,0)
+            self.border.moveBorder(move,0)
         else: 
-            self.border.moveBorder(-5,0)
+            self.border.moveBorder(-move,0)
         if y < self.height//2: 
-            self.border.moveBorder(0,5)
+            self.border.moveBorder(0,move)
         else: 
-            self.border.moveBorder(0,-5)
+            self.border.moveBorder(0,-move)
 
     def mouseDrag(self, x, y):
         pass

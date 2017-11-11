@@ -29,11 +29,19 @@ class BorderGame(object):
 			self.currY -= dy
 
 	def isLegal(self):
-		if -1*self.currX < -self.width/2 or -1*self.currX > self.width*1.5: return False
-		if -1*self.currY < -self.height/2 or -1*self.currY > self.height*1.5: return False
+		padding = 29
+		if -1*self.currX < -self.width/2 + padding or -1*self.currX > self.width*1.5 - padding: return False
+		if -1*self.currY < -self.height/2 + padding or -1*self.currY > self.height*1.5 - padding: return False
 		return True
 
 	def drawBorder(self, screen):
+		#draw the void
+		pygame.draw.rect(screen, (171,171,171), (self.currX - self.width/2, self.currY - self.height/2,self.width/2 + 30,self.height*3), 0)
+		pygame.draw.rect(screen, (171,171,171), (self.currX + self.width*2+20, self.currY - self.height/2,self.currX + self.width*2,self.height*3), 0)
+		pygame.draw.rect(screen, (171,171,171), (self.currX, self.currY - self.height/2, self.currX + self.width*5, self.height/2 + 30), 0)
+		pygame.draw.rect(screen, (171,171,171), (self.currX, self.currY + self.height*2+20, self.currX + self.width*5, self.currY + self.height*2), 0)
+
+		#draw the stones of my soul
 		BorderGame.gameDisplay.blit(self.right, (self.currX + self.width*2, self.currY))
 		BorderGame.gameDisplay.blit(self.left, (self.currX,self.currY))
 		BorderGame.gameDisplay.blit(self.bottom, (self.currX, self.currY + self.height*2))
