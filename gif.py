@@ -1,7 +1,7 @@
 """GIFImage by Matthew Roe"""
 
 #import Image
-import pillow
+import Pillow
 import pygame
 from pygame.locals import *
 

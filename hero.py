@@ -6,6 +6,6 @@ class hero(object):
 	def moveHero(dx, dy):
 		currX += dx
 		currY += dy
-		if not isLegal()
+		if not isLegal(): pass
 
-	def isLegal():
+	def isLegal(): pass
