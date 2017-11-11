@@ -102,6 +102,10 @@ class PygameGame(object):
 
 
 def main():
+    class Struct(): pass
+    data = Struct()
+    data.height = 720
+    data.width = 1080
     game = PygameGame()
     game.run()
 

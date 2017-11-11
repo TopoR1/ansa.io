@@ -1,7 +1,7 @@
 import pygame
 
 class HeroPlayer(object):
-	gameDisplay = pygame.display.set_mode((600, 400))
+	gameDisplay = pygame.display.set_mode((1080, 720))
 
 	def __init__(self, color, startX, startY, startSize, currImage):
 		self.color = color
