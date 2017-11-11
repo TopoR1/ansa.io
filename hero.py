@@ -3,10 +3,10 @@ import pygame
 class HeroPlayer(object):
 	gameDisplay = pygame.display.set_mode((1080, 720))
 
-	def __init__(self, color, startX, startY, startSize, currImage):
+	def __init__(self, color, startSize, currImage):
 		self.color = color
-		self.currX = startX
-		self.currY = startY 
+		self.height = 720
+		self.width = 1080
 		self.size = startSize
 		self.images = self.createImages()
 		self.currImage = currImage
@@ -30,7 +30,7 @@ class HeroPlayer(object):
 
 	def drawHero(self, screen):
 		img = pygame.transform.scale(self.images[self.currImage], (50,50))
-		HeroPlayer.gameDisplay.blit(img, (self.currX, self.currY))
+		HeroPlayer.gameDisplay.blit(img, (self.width//2, self.height//2))
 		#pygame.draw.circle(self.images[self.currImage], (255, 255, 255), (0, 0), 0)
 
 

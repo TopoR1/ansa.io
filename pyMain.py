@@ -22,7 +22,7 @@ class PygameGame(object):
     def init(self):
         self.width = 1080
         self.height = 720
-        self.player = hero.HeroPlayer("b", self.width*1/2, self.height*1/2, 1, 0)
+        self.player = hero.HeroPlayer("b", 1, 0)
         self.border = border.BorderGame()
 
     def mousePressed(self, x, y):
@@ -33,13 +33,13 @@ class PygameGame(object):
 
     def mouseMotion(self, x, y):
         if x < self.width//2: 
-            self.border.moveBorder(1,0)
+            self.border.moveBorder(5,0)
         else: 
-            self.border.moveBorder(-1,0)
+            self.border.moveBorder(-5,0)
         if y < self.height//2: 
-            self.border.moveBorder(0,1)
+            self.border.moveBorder(0,5)
         else: 
-            self.border.moveBorder(0,-1)
+            self.border.moveBorder(0,-5)
 
     def mouseDrag(self, x, y):
         pass
