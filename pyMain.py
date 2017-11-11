@@ -46,6 +46,15 @@ class PygameGame(object):
         pass
 
     def keyPressed(self, keyCode, modifier):
+        move = 10
+        if keyCode == pygame.K_LEFT:
+            self.border.moveBorder(move,0)
+        if keyCode == pygame.K_RIGHT:
+            self.border.moveBorder(-move,0)
+        if keyCode == pygame.K_UP:
+            self.border.moveBorder(0,move)
+        if keyCode == pygame.K_DOWN:
+            self.border.moveBorder(0, -move)
         pass
 
     def keyReleased(self, keyCode, modifier):
@@ -101,11 +110,14 @@ class PygameGame(object):
                 elif event.type == pygame.KEYDOWN:
                     self._keys[event.key] = True
                     self.keyPressed(event.key, event.mod)
+                    
                 elif event.type == pygame.KEYUP:
                     self._keys[event.key] = False
                     self.keyReleased(event.key, event.mod)
                 elif event.type == pygame.QUIT:
                     playing = False
+
+                    
             screen.fill(self.bgColor)
             self.redrawAll(screen)
             pygame.display.flip()
