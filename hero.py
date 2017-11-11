@@ -1,19 +1,11 @@
-import pygame
-
-pygame.init()
-clock = pygame.time.Clock()
-screen = pygame.display.set_mode((width, height))
-
-running = True
-while running:
-    time = clock.tick(fps) #similar to timerDelay
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-pygame.quit()
-
 class hero(object):
-	def moveHero(dx, dy):
+	def __init__(self, startX, startY):
+		self.currX = startX
+		self.currY = startY 
 
+	def moveHero(dx, dy):
+		currX += dx
+		currY += dy
+		if not isLegal()
+
+	def isLegal():
