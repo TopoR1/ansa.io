@@ -25,6 +25,13 @@ class PygameGame(object):
         self.player = hero.HeroPlayer("b", 1, 0)
         self.border = border.BorderGame()
 
+        self.left = False
+        self.right = False
+        self.up = False
+        self.down = False
+
+        self.move = 10
+
     def mousePressed(self, x, y):
         pass
 
@@ -32,37 +39,36 @@ class PygameGame(object):
         pass
 
     def mouseMotion(self, x, y):
-        move = 10
         if x < self.width//2: 
-            self.border.moveBorder(move,0)
+            self.border.moveBorder(self.move,0)
         else: 
-            self.border.moveBorder(-move,0)
+            self.border.moveBorder(-self.move,0)
         if y < self.height//2: 
-            self.border.moveBorder(0,move)
+            self.border.moveBorder(0,self.move)
         else: 
-            self.border.moveBorder(0,-move)
+            self.border.moveBorder(0,-self.move)
 
     def mouseDrag(self, x, y):
         pass
 
     def keyPressed(self, keyCode, modifier):
-        move = 10
-        if keyCode == pygame.K_LEFT:
-            self.border.moveBorder(move,0)
-        if keyCode == pygame.K_RIGHT:
-            self.border.moveBorder(-move,0)
-        if keyCode == pygame.K_UP:
-            self.border.moveBorder(0,move)
-        if keyCode == pygame.K_DOWN:
-            self.border.moveBorder(0, -move)
-        pass
+        if keyCode == pygame.K_LEFT: self.left = True
+        if keyCode == pygame.K_RIGHT: self.right = True
+        if keyCode == pygame.K_UP: self.up = True
+        if keyCode == pygame.K_DOWN: self.down = True
 
     def keyReleased(self, keyCode, modifier):
-        pass
+        if keyCode == pygame.K_LEFT: self.left = False
+        if keyCode == pygame.K_RIGHT: self.right = False
+        if keyCode == pygame.K_UP: self.up = False
+        if keyCode == pygame.K_DOWN: self.down = False
 
     def timerFired(self, dt):
         self.player.changeCurrImage()
-        pass
+        if self.left: self.border.moveBorder(self.move,0)
+        if self.right: self.border.moveBorder(-self.move,0)
+        if self.up: self.border.moveBorder(0,self.move)
+        if self.down: self.border.moveBorder(0, -self.move)
 
     def redrawAll(self, screen):
         self.player.drawHero(screen)
