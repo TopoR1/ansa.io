@@ -1,4 +1,5 @@
 import pygame
+import hero
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -13,7 +14,3 @@ while running:
             running = False
 
 pygame.quit()
-
-class hero(object):
-	def moveHero(dx, dy):
-
