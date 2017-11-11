@@ -18,11 +18,6 @@ class HeroPlayer(object):
 			playerImages.append(pygame.image.load("images/" + self.color + "/" + str(i)+".png"))
 		return playerImages
 
-	def moveHero(self, dx, dy):
-		currX += dx
-		currY += dy
-		if not isLegal(): pass
-
 	def changeCurrImage(self):
 		if self.currImage < 7 and self.pause == 4:
 			self.currImage += 1

@@ -14,12 +14,16 @@ use this code in your term project if you want
 import globalData
 import pygame
 import hero
+import border
 import PIL.Image
 
 class PygameGame(object):
 
     def init(self):
+        self.width = 1080
+        self.height = 720
         self.player = hero.HeroPlayer("b", self.width*1/2, self.height*1/2, 1, 0)
+        self.border = border.BorderGame()
 
     def mousePressed(self, x, y):
         pass
@@ -28,8 +32,14 @@ class PygameGame(object):
         pass
 
     def mouseMotion(self, x, y):
-        self.player.currX = x
-        self.player.currY = y
+        if x < self.width//2: 
+            self.border.moveBorder(1,0)
+        else: 
+            self.border.moveBorder(-1,0)
+        if y < self.height//2: 
+            self.border.moveBorder(0,1)
+        else: 
+            self.border.moveBorder(0,-1)
 
     def mouseDrag(self, x, y):
         pass
@@ -46,6 +56,7 @@ class PygameGame(object):
 
     def redrawAll(self, screen):
         self.player.drawHero(screen)
+        self.border.drawBorder(screen)
 
     def isKeyPressed(self, key):
         ''' return whether a specific key is being held '''
