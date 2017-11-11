@@ -11,10 +11,10 @@ use this code in your term project if you want
     in case you don't need to update the entire display every frame (then you
     should use pygame.display.update(Rect) instead)
 '''
+import globalData
 import pygame
 import hero
 import PIL.Image
-
 
 class PygameGame(object):
 
@@ -51,7 +51,7 @@ class PygameGame(object):
         ''' return whether a specific key is being held '''
         return self._keys.get(key, False)
 
-    def __init__(self, width=600, height=400, fps=50, title="112 Pygame Game"):
+    def __init__(self, width=1080, height=720, fps=50, title="112 Pygame Game"):
         self.width = width
         self.height = height
         self.fps = fps

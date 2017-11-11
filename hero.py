@@ -24,14 +24,12 @@ class HeroPlayer(object):
 		if not isLegal(): pass
 
 	def changeCurrImage(self):
-		print(self.currImage)
-		if self.currImage < 7 and self.pause = 10:
+		if self.currImage < 7 and self.pause == 4:
 			self.currImage += 1
 			self.pause = 0
-		else: 
+		if self.currImage == 7: 
 			self.currImage = 0
-			self.pause += 1
-		print(self.currImage)
+		self.pause += 1
 
 	def isLegal(self): pass
 
@@ -39,6 +37,7 @@ class HeroPlayer(object):
 		img = pygame.transform.scale(self.images[self.currImage], (50,50))
 		HeroPlayer.gameDisplay.blit(img, (self.currX, self.currY))
 		#pygame.draw.circle(self.images[self.currImage], (255, 255, 255), (0, 0), 0)
+
 
 		
 
