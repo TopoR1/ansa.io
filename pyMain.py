@@ -1,20 +1,12 @@
-'''
-pygamegame.py
-created by Lukas Peraza
- for 15-112 F15 Pygame Optional Lecture, 11/11/15
-use this code in your term project if you want
-- CITE IT
-- you can modify it to your liking
-  - BUT STILL CITE IT
-- you should remove the print calls from any function you aren't using
-- you might want to move the pygame.display.flip() to your redrawAll function,
-    in case you don't need to update the entire display every frame (then you
-    should use pygame.display.update(Rect) instead)
-'''
-import globalData
+#modules
 import pygame
+import pyaudio
+
+#other project files
+import globalData
 import hero
 import border
+from food import Food
 
 class PygameGame(object):
 
@@ -30,6 +22,14 @@ class PygameGame(object):
         self.down = False
 
         self.move = 10
+
+        self.pause = 0
+
+        self.foodImages = []
+        for i in range(15):
+            self.foodImages.append(pygame.image.load("images/food/f" + str(i)+".png"))
+
+        self.foodList = []
 
     def mousePressed(self, x, y):
         pass
@@ -69,9 +69,25 @@ class PygameGame(object):
         if self.up: self.border.moveBorder(0,self.move)
         if self.down: self.border.moveBorder(0, -self.move)
 
+        if self.pause == 10: 
+            self.genFood()
+            self.pause = 0
+        else: self.pause += 1
+
+    def genFood(self):
+        curr = Food()
+        if len(self.foodList) < 100:
+            self.foodList.append(curr)  
+
     def redrawAll(self, screen):
         self.player.drawHero(screen)
         self.border.drawBorder(screen)
+        self.drawFoodPieces(screen)
+
+    def drawFoodPieces(self, screen):
+        for item in self.foodList:
+            #Calling the def in the class
+            item.drawFood(screen, self.foodImages)
 
     def isKeyPressed(self, key):
         ''' return whether a specific key is being held '''
@@ -83,6 +99,7 @@ class PygameGame(object):
         self.fps = fps
         self.title = title
         self.bgColor = (255, 255, 255)
+        #background music
         pygame.init()
 
     def run(self):
@@ -126,6 +143,12 @@ class PygameGame(object):
             screen.fill(self.bgColor)
             self.redrawAll(screen)
             pygame.display.flip()
+
+            """
+            pygame.mixer.pre_init(44100,16,2,4096)
+            pygame.mixer.music.load("Castle On The Hill.mp3")
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(-1) #loop it endlessly"""
 
         pygame.quit()
 
